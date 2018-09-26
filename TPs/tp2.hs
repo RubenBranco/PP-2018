@@ -14,17 +14,16 @@ particao min max n = [min, min + ((max-min)/n) .. max]
 ex9 = sum [x^2 | x <- [1..100]]
 
 -- ex 11
-
 -- a
 fatores n = [x | x <- [1..n-1], n `mod` x == 0]
 -- b
 perfeitos n = [x | x <- [1..n], sum (fatores x) == x ]
 
 -- ex 12
-ex12 = [x^2 | x <- [1..]]
+ex12 = [x^2 | x <- [0..]]
 
 -- ex 13
-produtoEscalar xs ys = sum ([x * y | (x,y) <- zip xs ys])
+produtoEscalar xs ys = sum [x * y | (x,y) <- zip xs ys]
 
 -- ex 16
 -- a Y

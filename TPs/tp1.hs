@@ -34,8 +34,8 @@ sumN n xs = sum (take n xs)
 checkLastAndLength xs1 xs2 = last xs1 == last xs2 && length xs1 == length xs2
 -- ex 6
 --a
-isSuffix xs1 xs2 = drop ((length xs2) - (length xs1)) xs2 == xs1
+isSuffix xs ys = drop ((length ys) - (length xs)) ys == xs
 -- b
-isPrefix xs1 xs2 = take (length xs1) xs2 == xs1
+isPrefix xs ys = take (length xs) ys == xs
 -- c
-isSuffixOrPrefix xs1 xs2 = isSuffix xs1 xs2 || isPrefix xs1 xs2
+isSuffixOrPrefix xs ys = isSuffix xs ys || isPrefix xs ys
