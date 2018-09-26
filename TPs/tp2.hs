@@ -25,6 +25,12 @@ ex12 = [x^2 | x <- [0..]]
 -- ex 13
 produtoEscalar xs ys = sum [x * y | (x,y) <- zip xs ys]
 
+-- ex 14
+reproduz xs = concat [replicate x x | x <- xs]
+
+-- ex 15
+ex15 = concat [[(x,y) | y <- [4,5,6]] | x <- [1,2,3]]
+
 -- ex 16
 -- a Y
 -- b Y
