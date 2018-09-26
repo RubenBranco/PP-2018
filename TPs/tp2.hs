@@ -1,5 +1,8 @@
 -- 8, 9, 11, 12, 13 e 16
 
+-- ex 7
+particao min max n = [min, min + ((max-min)/n) .. max]
+
 -- ex8
 -- a [2, 4, 6]
 -- b [4, 16, 36, 64]
@@ -8,7 +11,7 @@
 -- e [(1, 1), (1, 2), (1, 3), (3, 1), (3, 2), (3, 3)]
 
 -- ex 9
-sum [x^2 | x <- [1..100]]
+ex9 = sum [x^2 | x <- [1..100]]
 
 -- ex 11
 
@@ -18,7 +21,7 @@ fatores n = [x | x <- [1..n-1], n `mod` x == 0]
 perfeitos n = [x | x <- [1..n], sum (fatores x) == x ]
 
 -- ex 12
-[x^2 | x <- [1..]]
+ex12 = [x^2 | x <- [1..]]
 
 -- ex 13
 produtoEscalar xs ys = sum ([x * y | (x,y) <- zip xs ys])
