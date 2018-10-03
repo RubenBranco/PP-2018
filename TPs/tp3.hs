@@ -72,6 +72,5 @@ safetailb xs
     | (null xs) = []
     | otherwise = tail xs
 
-safetailc (x:xs) = xs
+safetailc (_:xs) = xs
 safetailc () = []
-
