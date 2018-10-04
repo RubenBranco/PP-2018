@@ -6,8 +6,8 @@ charCodePlusK character k = ord character + k
 cifrarCesar :: Int -> String -> String
 cifrarCesar k xs = [chr (charCodePlusK x k) | x <- xs]
 
-descifrarCesar:: Int -> String -> String
-descifrarCesar k xs = cifrarCesar (-k) xs
+decifrarCesar:: Int -> String -> String
+decifrarCesar k xs = cifrarCesar (-k) xs
 
 listaObelix :: Int -> String -> Int -> String
 listaObelix k xs sign = [chr ((charCodePlusK x (k * sign)) + (i * sign)) | (i,x) <- zip [0..length xs] xs]
@@ -21,5 +21,8 @@ decifrarObelix k xs = listaObelix k xs (-1)
 isPalindrome :: Int -> Bool
 isPalindrome x = x == read (reverse (show x))
 
+listOfPalindromes :: Int -> [Int]
+listOfPalindromes n = [x | x <- [0..n], isPalindrome x]
+
 tresPalindromos :: Int -> (Int, Int, Int)
-tresPalindromos x = head [(i, j, k) | i <- [0..x], isPalindrome i, j <- [0..x], isPalindrome j, k <- [0..x], isPalindrome k, i + j + k == x]
+tresPalindromos x = head [ (i, j, k) | i <- listOfPalindromes x, j <- listOfPalindromes x, k <- listOfPalindromes x, i + j + k == x]
