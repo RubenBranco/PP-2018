@@ -15,8 +15,8 @@ zipWithRecursive' f [] _ = []
 zipWithRecursive' f _ [] = []
 zipWithRecursive' f (x:xs) (y:ys) = f x y : zipWithRecursive' f xs ys
 
--- zipWithComprehension' :: (a -> b -> c) -> [a] -> [b] -> [c]
--- zipWithComprehension' f xs ys = [f x y | ]
+zipWithComprehension' :: (a -> b -> c) -> [a] -> [b] -> [c]
+zipWithComprehension' f xs ys = [f x y | (x,y) <- zip xs ys]
 
 zip' :: [a] -> [b] -> [(a,b)]
 zip' xs ys = zipWithRecursive' (,) xs ys
@@ -27,7 +27,7 @@ takeWhile' :: (a -> Bool) -> [a] -> [a]
 takeWhile' _ [] = []
 takeWhile' p (x:xs)
             | p x = x : takeWhile' p xs
-            | not (p x) = []
+            | otherwise = []
 
 -- 8c
 total :: (Int -> Int) -> Int -> Int
@@ -35,9 +35,5 @@ total f n = sum (map f [0..n])
 
 -- 9a
 aplica :: [a -> a] -> [a] -> [a]
-aplica _ [] = []
-aplica xs (y:ys) = aplicaf xs y : aplica xs ys
-
-aplicaf :: [a -> a] -> a -> a
-aplicaf [] a = a
-aplicaf (f:xs) a = aplicaf xs (f a)
+aplica [] xs = xs
+aplica (f:fs) xs = aplica fs (map f xs)
