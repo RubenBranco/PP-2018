@@ -32,7 +32,18 @@ poly n = foldl (\acc x -> x + acc * n) 0
 -- 20
 aplica :: [a -> a] -> [a] -> [a]
 aplica fs xs = foldr (\x acc -> (foldl (\acc f -> f acc) x fs) : acc) [] xs
+-- aplica fs = map ( foldr (.) id (reverse fs))
+-- aplica fs = map (foldl (flip (.)) id fs)
 -- 21
 selectApply :: (a -> b)-> (a -> Bool)-> [a] -> [b]
 selectApply f1 f2 xs = map f1 (filter f2 xs)
 
+-- 22
+gz ::  [[Int]] -> [[Bool]]
+gz xs = (map . map) (>0) xs
+
+-- 23
+iterRecursive f 0 = f -- id
+iterRecursive f n = f . iterRecursive f (n - 1)
+iterFoldr f n = foldr (\_ acc -> f . acc) f [0..(n - 1)]
+-- foldr (.) id (replicate n f)
