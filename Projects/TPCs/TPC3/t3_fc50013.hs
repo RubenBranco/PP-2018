@@ -10,10 +10,13 @@ noteFrequency :: (Char, Int) -> Double
 noteFrequency (note, octave) = 440 * 2 ** (fromIntegral (midiCode (note, octave) - midiCode ('A', 4)) / fromIntegral 12)
 
 midiCode :: (Char, Int) -> Int
-midiCode (note, octave) = octave * 12 - (index note (reverse"CcDdEFfGgAaB")) + 23
+midiCode (note, octave) = octave * 12 + (index note "CcDdEFfGgAaB") + 23
 
 index :: (Eq a) => a -> [a] -> Int
 index el xs = snd$head (filter (\x -> (fst x) == el) (zip xs [0..(length xs)]))
 
 notesBelow :: Double -> [(Char,Int)] -> [(Char,Int)]
 notesBelow freq = filter (\x -> noteFrequency x < freq)
+
+averageFrequency :: [(Char,Int)] -> Double
+averageFrequency xs = foldl (\acc x -> (noteFrequency x) + acc) 0 xs / fromIntegral (length xs)
