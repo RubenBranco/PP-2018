@@ -1,8 +1,11 @@
 import Data.Char
 import Data.List
 
-fromString :: String -> [(Char,Int)]
-fromString xs = map (\x -> (fst x, digitToInt$snd x))$filter (\x -> not (isDigit$fst x)) (zip xs (tail xs))
+zipTuple :: ([Char], [Char]) -> [(Char, Char)]
+zipTuple (xs, ys) = zip xs ys
+
+fromString :: String -> [(Char, Int)]
+fromString xs = map (\x -> (fst x, digitToInt $ snd x)) $ zipTuple $ partition (\x -> not (isDigit x)) xs
 
 fromNotes :: [(Char,Int)] -> [Double]
 fromNotes = map (noteFrequency)
